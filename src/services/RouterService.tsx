@@ -1,5 +1,5 @@
 const serverUrl = 'https://gorest.co.in/public-api';
-const simpleAuth = '?_format=json&access-token=DUAw91TtGMGNfaS3KhdN9UDANGWLJTn2LDU1'
+const simpleAuth = '?_format=json&access-token=K6UAqRWRky177Cu7WDvesoyle6orCVm8SXuX'
 
 export const usersApiUrl = (id?: string) =>
     id ? `${serverUrl}/users/${id}` : `${serverUrl}/users${simpleAuth}`;

@@ -1,6 +1,10 @@
-import { usersApiUrl } from "./RouterService";
+import {commentsApiUrl, postsApiUrl, usersApiUrl} from "./RouterService";
+import IUser from "../components/SearchUser";
+import IComments from "../components/PostsComments";
 
-const token = 'DUAw91TtGMGNfaS3KhdN9UDANGWLJTn2LDU1';
+const token = 'K6UAqRWRky177Cu7WDvesoyle6orCVm8SXuX';
+
+
 
 const headers: HeadersInit = {
     'Content-Type' : "application/json; charset=utf-8",
@@ -14,11 +18,6 @@ const apiCall = (url: string, requestInit: RequestInit, resolve: any, reject: an
         } else {
             reject(response)
         }
-        // if (response.ok) {
-        //     response.json().then((json) => resolve(json))
-        // } else {
-        //     reject(response)
-        // }
     });
 
 
@@ -27,8 +26,49 @@ export const getUsers = () => {
         method: 'GET',
         headers: headers
     }
-
     return new Promise<Response>(
         (resolve, reject) => apiCall(usersApiUrl(), requestInit, resolve, reject)
+    );
+}
+
+export const updateUsers = (id:string , body: IUser) => {
+    const requestInit: RequestInit = {
+        method: 'PUT',
+        headers: headers,
+        body: JSON.stringify(body)
+    }
+    return new Promise<Response>(
+        (resolve, reject) => apiCall(usersApiUrl(id), requestInit, resolve, reject)
+    );
+}
+
+export const getUserPosts = (id: string) => {
+    const requestInit: RequestInit = {
+        method: 'GET',
+        headers: headers
+    }
+    return new Promise<Response>(
+        (resolve, reject) => apiCall(postsApiUrl(id), requestInit, resolve, reject)
+    );
+}
+
+export const getPostsComments = (id: string) => {
+    const requestInit: RequestInit = {
+        method: 'GET',
+        headers: headers
+    }
+    return new Promise<Response>(
+        (resolve, reject) => apiCall(commentsApiUrl(id), requestInit, resolve, reject)
+    );
+}
+
+export const saveComment = (id:string , body: IComments) => {
+    const requestInit: RequestInit = {
+        method: 'POST',
+        headers: headers,
+        body: JSON.stringify(body)
+    }
+    return new Promise<Response>(
+        (resolve, reject) => apiCall(commentsApiUrl(id), requestInit, resolve, reject)
     );
 }

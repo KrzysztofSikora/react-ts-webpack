@@ -1,5 +1,4 @@
-import React, { Fragment, useState } from "react";
-import ReactDOM from 'react-dom';
+import React, { Fragment, useState } from 'react';
 
 type FormElem = React.FormEvent<HTMLFormElement>;
 
