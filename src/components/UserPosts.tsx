@@ -32,7 +32,6 @@ export const UserPosts = ({ id }: IPropsUserPosts): JSX.Element => {
         const nextIndex = postIndex + 1;
         if (postList.length == nextIndex) {
             setPostIndex(0);
-            setPostIndex(0);
         } else {
             setCurrentPost(postList[nextIndex])
             setPostIndex(nextIndex);
