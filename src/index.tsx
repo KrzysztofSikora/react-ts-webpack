@@ -1,19 +1,23 @@
-import React, { Fragment, useState } from "react";
+import React from "react";
 import ReactDOM from 'react-dom';
-import ToDoList from "./components/ToDoList";
-import { SearchUser } from "./components/SearchUser";
+import { Router, RouteComponentProps } from '@reach/router'
 
-
-export default function App(): JSX.Element {
-    return (
-        <>
-            <ToDoList/>
-            <hr/>
-            <SearchUser/>
-        </>
-    )
-}
+import { StoreProvider } from "./stores/Store";
+import App from "./App";
+import HomePage from "./pages/HomePage";
+import FavPage from './pages/FavPage'
 
 const root = document.getElementById('app-root')
+const RouterPage = (props: {pageComponent: JSX.Element} & RouteComponentProps) => props.pageComponent
 
-ReactDOM.render(<App />, root)
+ReactDOM.render(
+    <StoreProvider>
+        <Router>
+            <App path='/'>
+                <RouterPage pageComponent={<HomePage />} path='/' />
+                <RouterPage pageComponent={<FavPage />} path='/faves' />
+            </App>
+        </Router>
+    </StoreProvider>,
+    root
+)
